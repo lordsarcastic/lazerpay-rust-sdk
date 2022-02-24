@@ -1,4 +1,4 @@
-use crate::apis::*;
+use crate::constants::*;
 use erased_serde::Serialize;
 use reqwest::{
     header::{HeaderMap, HeaderValue},
@@ -136,7 +136,6 @@ impl Payment {
     }
 
     fn convert_string_to_json(&self, response_body: String) -> Value {
-        println!("{}", from_str::<Value>(&response_body).unwrap());
         from_str::<Value>(&response_body).unwrap()
     }
 }
