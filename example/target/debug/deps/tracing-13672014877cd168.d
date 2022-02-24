@@ -1,0 +1,13 @@
+/Users/mac/Documents/Personal/Rust/lazerpay-rust-sdk/example/target/debug/deps/tracing-13672014877cd168.rmeta: /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/lib.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/macros.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/dispatcher.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/field.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/instrument.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/level_filters.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/span.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/stdlib.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/subscriber.rs
+
+/Users/mac/Documents/Personal/Rust/lazerpay-rust-sdk/example/target/debug/deps/tracing-13672014877cd168.d: /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/lib.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/macros.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/dispatcher.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/field.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/instrument.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/level_filters.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/span.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/stdlib.rs /Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/subscriber.rs
+
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/lib.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/macros.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/dispatcher.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/field.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/instrument.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/level_filters.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/span.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/stdlib.rs:
+/Users/mac/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.31/src/subscriber.rs:
