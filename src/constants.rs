@@ -1,3 +1,16 @@
-pub const API_KEY_ENV_VAR: &str = "API_KEY";
-pub const API_KEY_HEADER_KEY: &str = "x-api-key";
-pub const API_BASE_URL: &str = "https://api.lazerpay.engineering/api/v1/";
+#![allow(dead_code)]
+macro_rules! apis {
+    ($($name:ident => $content:expr)*) => {
+        $(
+            pub const $name: &str = $content;
+        )*
+    }
+}
+
+apis! {
+    BASE_URL => "https://api.lazerpay.engineering/api/v1"
+    API_URL_INIT_TRANSACTION => "https://api.lazerpay.engineering/api/v1/transaction/initialize"
+    API_URL_CONFIRM_TRANSACTION => "https://api.lazerpay.engineering/api/v1/transaction/verify"
+    API_URL_GET_ACCEPTED_COINS => "https://api.lazerpay.engineering/api/v1/coins"
+    API_URL_TRANSFER_FUNDS => "https://api.lazerpay.engineering/api/v1/transfer"
+}
