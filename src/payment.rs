@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use erased_serde::Serialize;
 use reqwest::{
     header::{HeaderMap, HeaderValue},
@@ -6,6 +5,7 @@ use reqwest::{
 };
 use serde_json;
 use serde_json::{from_str, Value};
+use std::collections::HashMap;
 
 use crate::constants::*;
 
@@ -79,14 +79,13 @@ impl Payment {
         self.convert_string_to_json(response.text().await.unwrap())
     }
 
-    pub async fn get_rate(
-        &self,
-        currency: String,
-        coin: String,
-    ) -> Value {
+    pub async fn get_rate(&self, currency: String, coin: String) -> Value {
         let client = Client::new();
         let response = client
-            .get(format!("{}?currency={}&coin={}", API_URL_GET_RATE, currency, coin))
+            .get(format!(
+                "{}?currency={}&coin={}",
+                API_URL_GET_RATE, currency, coin
+            ))
             .headers(self.construct_headers(false))
             .send()
             .await
