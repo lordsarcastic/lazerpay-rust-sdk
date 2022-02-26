@@ -1,2 +1,4 @@
-# lazerpay-rust-sdk
-Lazerpay SDK for the Rust programming laguage
+# Lazerpay Rust SDK
+This crate integrates the Lazerpay payment gateway for accepting cryptocurrency payments.
+
+### Usage
