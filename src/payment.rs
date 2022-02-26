@@ -1,4 +1,4 @@
-use crate::constants::*;
+use std::collections::HashMap;
 use erased_serde::Serialize;
 use reqwest::{
     header::{HeaderMap, HeaderValue},
@@ -6,7 +6,8 @@ use reqwest::{
 };
 use serde_json;
 use serde_json::{from_str, Value};
-use std::collections::HashMap;
+
+use crate::constants::*;
 
 pub struct Payment {
     pub api_public_key: String,
