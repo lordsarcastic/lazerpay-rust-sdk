@@ -13,4 +13,5 @@ apis! {
     API_URL_CONFIRM_TRANSACTION => "https://api.lazerpay.engineering/api/v1/transaction/verify"
     API_URL_GET_ACCEPTED_COINS => "https://api.lazerpay.engineering/api/v1/coins"
     API_URL_TRANSFER_FUNDS => "https://api.lazerpay.engineering/api/v1/transfer"
+    API_URL_GET_RATE => "https://api.lazerpay.engineering/api/v1/rate"
 }
