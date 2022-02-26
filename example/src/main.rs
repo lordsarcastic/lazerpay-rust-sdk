@@ -1,12 +1,12 @@
 use serde_json::Value;
 use lazerpay_rust_sdk::Lazerpay;
-mod constants;
+
+mod utils;
 
 #[tokio::main]
 async fn main() {
-    let api_public_key = constants::API_PUBLIC_KEY_ENV_VAR.to_string();
-    let api_secret_key = constants::API_SECRET_KEY_ENV_VAR.to_string();
-    let lazerpay: Lazerpay = Lazerpay::new(&api_public_key, &api_secret_key);
+    let api = utils::get_api_keys().unwrap();
+    let lazerpay: Lazerpay = Lazerpay::new(&api.public_key, &api.secret_key);
 
     // Initialize lazerpay payment
     let response = initialize_payment(
@@ -17,7 +17,7 @@ async fn main() {
         "enochchejieh@gmail.com".to_string(),
         "USDC".to_string(),
         "USD".to_string(),
-        api_public_key.to_string(),
+        api.public_key.to_string(),
         true
     ).await;
 
