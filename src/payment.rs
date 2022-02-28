@@ -96,7 +96,7 @@ impl Payment {
 
     pub async fn transfer_funds(
         &self,
-        amount: i32,
+        amount: u32,
         recipient: String,
         coin: String,
         blockchain: String,
