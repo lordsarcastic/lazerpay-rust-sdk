@@ -1,7 +1,5 @@
+use lazerpay_rust_sdk::{utils, Lazerpay};
 use serde_json::Value;
-use lazerpay_rust_sdk::Lazerpay;
-
-mod utils;
 
 #[tokio::main]
 async fn main() {
@@ -10,7 +8,7 @@ async fn main() {
 
     // Initialize lazerpay payment
     let response = initialize_payment(
-        lazerpay, 
+        lazerpay,
         "W6b8hV55l0435t3545435".to_string(),
         "1000".to_string(),
         "Enoch".to_string(),
@@ -18,31 +16,35 @@ async fn main() {
         "USDC".to_string(),
         "USD".to_string(),
         api.public_key.to_string(),
-        true
-    ).await;
+        true,
+    )
+    .await;
 
     println!("{:?}", response);
 }
 
-async fn initialize_payment (
+async fn initialize_payment(
     lazerpay: Lazerpay,
-    reference: String, 
+    reference: String,
     amount: String,
     customer_name: String,
-    customer_email: String, 
+    customer_email: String,
     coin: String,
-    currency: String, 
-    api_public_key: String, 
-    accept_partial_payment: bool
-    ) -> Value {
-    lazerpay.payment.initialize_payment(
-        reference, 
-        amount, 
-        customer_name, 
-        customer_email, 
-        coin, 
-        currency, 
-        api_public_key,
-        accept_partial_payment
-    ).await
+    currency: String,
+    api_public_key: String,
+    accept_partial_payment: bool,
+) -> Value {
+    lazerpay
+        .payment
+        .initialize_payment(
+            reference,
+            amount,
+            customer_name,
+            customer_email,
+            coin,
+            currency,
+            api_public_key,
+            accept_partial_payment,
+        )
+        .await
 }

@@ -1,6 +1,6 @@
 mod constants;
 mod payment;
-mod utils;
+pub mod utils;
 
 pub struct Lazerpay {
     pub api_public_key: String,
@@ -90,6 +90,9 @@ mod tests {
             )
             .await;
 
-        assert_eq!(response["message"], "Insufficient funds, check your balance and try again");
+        assert_eq!(
+            response["message"],
+            "Insufficient funds, check your balance and try again"
+        );
     }
 }
