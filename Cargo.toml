@@ -9,6 +9,7 @@ repository = "https://github.com/Lord-sarcastic/lazerpay-rust-sdk"
 readme = "README.md"
 keywords = ["lazerpay", "crypto", "fintech", "web3", "payment"]
 categories = ["web-programming::http-client", "cryptography::cryptocurrencies"]
+exclude = ["example/*"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
