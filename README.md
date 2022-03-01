@@ -116,6 +116,14 @@ async fn transfer_funds (
 
 and that's it.
 
+### Examples
+
+To try out the examples, you can use the following command:
+
+```sh
+cargo run --example payment
+```
+
 If you need more reference on this crate feel free to check the [source code](https://github.com/Lord-sarcastic/lazerpay-rust-sdk/tree/master/src)
 
 [crate-src]: https://img.shields.io/crates/v/lazerpay-rust-sdk
