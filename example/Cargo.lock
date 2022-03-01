@@ -344,6 +344,8 @@ dependencies = [
 name = "lazerpay-rust-sdk"
 version = "0.1.0"
 dependencies = [
+ "dotenv",
+ "envy",
  "erased-serde",
  "reqwest",
  "serde",

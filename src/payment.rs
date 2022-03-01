@@ -33,15 +33,18 @@ impl Payment {
         api_public_key: String,
         accept_partial_payment: bool,
     ) -> Value {
-        let mut payload: HashMap<&str, Box<dyn Serialize + 'static>> = HashMap::new();
-        payload.insert("reference", Box::new(reference));
-        payload.insert("amount", Box::new(amount));
-        payload.insert("customer_name", Box::new(customer_name));
-        payload.insert("customer_email", Box::new(customer_email));
-        payload.insert("coin", Box::new(coin));
-        payload.insert("currency", Box::new(currency));
-        payload.insert("api_public_key", Box::new(api_public_key));
-        payload.insert("accept_partial_payment", Box::new(accept_partial_payment));
+        let payload = {
+            let mut tmp: HashMap<_, Box<dyn Serialize + 'static>> = HashMap::new();
+            tmp.insert("reference", Box::new(reference));
+            tmp.insert("amount", Box::new(amount));
+            tmp.insert("customer_name", Box::new(customer_name));
+            tmp.insert("customer_email", Box::new(customer_email));
+            tmp.insert("coin", Box::new(coin));
+            tmp.insert("currency", Box::new(currency));
+            tmp.insert("api_public_key", Box::new(api_public_key));
+            tmp.insert("accept_partial_payment", Box::new(accept_partial_payment));
+            tmp
+        };
 
         let client = Client::new();
         let response = client
@@ -103,13 +106,16 @@ impl Payment {
         api_public_key: String,
         api_secret_key: String,
     ) -> Value {
-        let mut payload: HashMap<&str, Box<dyn Serialize + 'static>> = HashMap::new();
-        payload.insert("amount", Box::new(amount));
-        payload.insert("recipient", Box::new(recipient));
-        payload.insert("coin", Box::new(coin));
-        payload.insert("blockchain", Box::new(blockchain));
-        payload.insert("api_public_key", Box::new(api_public_key));
-        payload.insert("api_secret_key", Box::new(api_secret_key));
+        let payload = {
+            let mut tmp: HashMap<_, Box<dyn Serialize + 'static>> = HashMap::new();
+            tmp.insert("amount", Box::new(amount));
+            tmp.insert("recipient", Box::new(recipient));
+            tmp.insert("coin", Box::new(coin));
+            tmp.insert("blockchain", Box::new(blockchain));
+            tmp.insert("api_public_key", Box::new(api_public_key));
+            tmp.insert("api_secret_key", Box::new(api_secret_key));
+            tmp
+        };
 
         let client = Client::new();
         let response = client
@@ -124,31 +130,21 @@ impl Payment {
     }
 
     fn construct_headers(&self, secret_key_required: bool) -> HeaderMap {
-        match secret_key_required {
-            true => {
-                let api_secret_key = format!("Bearer {}", self.api_secret_key);
-                let mut headers = HeaderMap::new();
+        let mut headers = HeaderMap::new();
+        headers.insert(
+            "X-API-KEY",
+            HeaderValue::from_str(self.api_public_key.as_str()).unwrap(),
+        );
 
-                headers.insert(
-                    "X-API-KEY",
-                    HeaderValue::from_str(self.api_public_key.as_str()).unwrap(),
-                );
-                headers.insert(
-                    "AUTHORIZATION",
-                    HeaderValue::from_str(api_secret_key.as_str()).unwrap(),
-                );
-                headers
-            }
-            false => {
-                let mut headers = HeaderMap::new();
-
-                headers.insert(
-                    "X-API-KEY",
-                    HeaderValue::from_str(self.api_public_key.as_str()).unwrap(),
-                );
-                headers
-            }
+        if secret_key_required {
+            let api_secret_key = format!("Bearer {}", self.api_secret_key);
+            headers.insert(
+                "AUTHORIZATION",
+                HeaderValue::from_str(api_secret_key.as_str()).unwrap(),
+            );
         }
+
+        headers
     }
 
     fn convert_string_to_json(&self, response_body: String) -> Value {
