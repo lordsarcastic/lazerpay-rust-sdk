@@ -9,7 +9,7 @@ This crate integrates the Lazerpay payment gateway for accepting cryptocurrency 
 Add the following to your `cargo.toml`
 
 ```toml
-lazerpay-rust-sdk = "0.1.0"
+lazerpay-rust-sdk = "0.1.1"
 ```
 
 Then you can easily import the crate.
