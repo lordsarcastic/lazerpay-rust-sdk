@@ -6,111 +6,70 @@ This crate integrates the Lazerpay payment gateway for accepting cryptocurrency 
 
 ## Usage
 
-Add the following to your `cargo.toml`
+Add the following to your cargo dependencies:
 
 ```toml
-lazerpay-rust-sdk = "0.1.0"
+lazerpay-rust-sdk = "0.1.2"
 ```
 
-Then you can easily import the crate.
+Next you get your test `LAZERPAY_PUBLIC_KEY` and `LAZERPAY_SECRET_KEY` from [Lazerpay dashboard](https://beta.lazerpay.finance/)
+
+Add those to a `.env` file at the root of your project. You can check `.env.example` for an example.
+
+With that out of the way, you can use the API to make payments.
 
 ```rust
-
-use lazerpay_rust_sdk::Lazerpay;
-
-```
-
-Next you will need to create a Lazerpay instance with the help your `API_PUBLIC_KEY` and `API_SECRET_KEY` you can get that easily from your [Lazerpay dashboard](https://beta.lazerpay.finance/)
-
-```rust
-use serde_json::Value;
-use lazerpay_rust_sdk::Lazerpay;
-
-mod utils;
+use lazerpay_rust_sdk::{utils, Customer, Lazerpay, PaymentConfig};
 
 #[tokio::main]
 async fn main() {
-    let api = utils::get_api_keys().unwrap();
-    let lazerpay: Lazerpay = Lazerpay::new(&api.public_key, &api.secret_key);
+    let api = Lazerpay::new();
 
-    let response = initialize_payment(
-        lazerpay,
-        "xxxxxxxxxxxxxxxxxxxxx".to_string(),
-        "1000".to_string(),
-        "xxxxx".to_string(),
-        "xxxxx@gmail.com".to_string(),
-        "USDC".to_string(),
-        "USD".to_string(),
-        api.public_key.to_string(),
-        true
-    ).await;
+    let mut payment = api.create_payment(PaymentConfig {
+        customer: Customer::new("Enoch", "enochchejieh@gmail.com"),
+        reference: utils::generate_unique_reference(),
+        coin: "USDC".into(),
+        amount: "1000".into(),
+        currency: "USD".into(),
+        accept_partial_payment: true,
+    });
 
-    println!("Response -> {:?}", response);
+    dbg!(payment.send().await.unwrap());
+    dbg!(payment.check_confirmation().await.unwrap());
 }
+```
 
-async fn initialize_payment (
-    lazerpay: Lazerpay,
-    reference: String,
-    amount: String,
-    customer_name: String,
-    customer_email: String,
-    coin: String,
-    currency: String,
-    api_public_key: String,
-    accept_partial_payment: bool
-    ) -> Value {
-    lazerpay.payment.initialize_payment(
-        reference,
-        amount,
-        customer_name,
-        customer_email,
-        coin,
-        currency,
-        api_public_key,
-        accept_partial_payment
-    ).await
+And transfer funds using the transfer API.
+
+```rust
+use lazerpay_rust_sdk::{utils, Customer, Lazerpay, TransferConfig};
+
+#[tokio::main]
+async fn main() {
+    let api = Lazerpay::new();
+
+    let mut transfer = api.create_transfer(TransferConfig {
+        recipient: "0x0000000000000000000000000000000000000000".into(),
+        blockchain: "Binance Smart Chain".into(),
+        coin: "USDC".into(),
+        amount: 1000,
+    });
+
+    dbg!(transfer.send().await.unwrap());
 }
+```
 
-async fn confirm_payment (
-    lazerpay: Lazerpay,
-    identifier: String,
-    ) -> Value {
-    lazerpay.payment.confirm_payment("xxxxxxxxxxxxxxxxxxxxx".to_string()).await
-}
+Finally, you can use get information on supported coins and their rates.
 
-async fn get_accepted_coins (
-    lazerpay: Lazerpay,
-    ) -> Value {
-    lazerpay.payment.get_accepted_coins().await
-}
+```rust
+use lazerpay_rust_sdk::Lazerpay;
 
-async fn get_rate (
-    lazerpay: Lazerpay,
-    currency: String,
-    coin: String,
-    ) -> Value {
-    lazerpay.payment.get_rate(
-        currency,
-        coin,
-    ).await
-}
+#[tokio::main]
+async fn main() {
+    let api = Lazerpay::new();
 
-async fn transfer_funds (
-    lazerpay: Lazerpay,
-    amount: u32,
-    recipient: String,
-    coin: String,
-    blockchain: String,
-    api_public_key: String,
-    api_secret_key: String,
-    ) -> Value {
-    lazerpay.payment.transfer_funds(
-        amount,
-        recipient,
-        coin,
-        api_public_key,
-        api_secret_key,
-    ).await
+    dbg!(api.get_rates("USD", "USDC").await.unwrap());
+    dbg!(api.get_accepted_coins().await.unwrap());
 }
 ```
 
@@ -118,7 +77,7 @@ and that's it.
 
 ### Examples
 
-To try out the examples, you can use the following command:
+You could also try out the examples in the project. For example, to run the payment example, run:
 
 ```sh
 cargo run --example payment
