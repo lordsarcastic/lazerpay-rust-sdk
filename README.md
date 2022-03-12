@@ -9,7 +9,7 @@ This crate integrates the Lazerpay payment gateway for accepting cryptocurrency 
 Add the following to your cargo dependencies:
 
 ```toml
-lazerpay-rust-sdk = "0.1.2"
+lazerpay-rust-sdk = "0.1.1"
 ```
 
 Next you get your test `LAZERPAY_PUBLIC_KEY` and `LAZERPAY_SECRET_KEY` from [Lazerpay dashboard](https://beta.lazerpay.finance/)
